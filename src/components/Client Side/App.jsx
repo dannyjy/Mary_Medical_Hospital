@@ -7,13 +7,15 @@ import TrustedCompanies from "./components/Client Side/TrustedCompanies.jsx";
 
 const App = () => {
     return (
-        <div>
+        <div className="bg-[#FAFAFA]">
             <Header />
-            <HospitalGallery/>
-            <OurDoctors/>
-            <AboutUs />
-            <TrustedCompanies/>
-            <Footer />
+            <div className="max-w-[1400px] m-auto">
+                <HospitalGallery/>
+                <OurDoctors/>
+                <AboutUs />
+                <TrustedCompanies/>
+                <Footer />
+            </div>
         </div>
     )
 }
