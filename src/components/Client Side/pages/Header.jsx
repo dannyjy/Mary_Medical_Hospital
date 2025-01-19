@@ -1,6 +1,7 @@
 import React from "react";
-import Button from "../../ui/Button.jsx";
+import Button from "../../../ui/Button.jsx";
 import { IoMdMenu, IoIosClose } from "react-icons/io";
+import {Link} from "react-router-dom";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(true);
@@ -15,11 +16,25 @@ const Header = () => {
                     <h1 className="text-2xl lg:text-4xl text-white font-semibold">MARY MEDICAL HOSPITAL</h1>
                     <nav className="flex items-center justify-between gap-4 bg-[#80808080] px-5 py-4 rounded-2xl max-lg:hidden">
                         <ul className="flex items-center justify-between gap-4 text-white text-xl ">
-                            <li>Home</li>
-                            <li>About Us</li>
+                            <div>
+                                <Link to="/">
+                                    <li>Home</li>
+                                </Link>
+                            </div> <div>
+                                <Link to="/">
+                                    <li>About Us</li>
+                                </Link>
+                            </div>
                         </ul>
-                            <Button Val={"Log In"}/>
-                            <Button Val={"Book now"}/>
+                            <div>
+                                <Link to="/login">
+                                    <Button Val={"Log In"}/>
+                                </Link>
+                            </div><div>
+                                <Link to="/bookAppointment">
+                                    <Button Val={"Book now"}/>
+                                </Link>
+                            </div>
                     </nav>
                     {isMenuOpen ? <IoIosClose className="text-4xl text-white lg:hidden" onClick={handleMenuOpen}/> : <IoMdMenu className="text-4xl text-white lg:hidden" onClick={handleMenuOpen}/>}
                     {
@@ -30,8 +45,15 @@ const Header = () => {
                                     <li>Home</li>
                                     <li>AboutUs</li>
                                 </ul>
-                                <Button Val={"Log In"}/>
-                                <Button Val={"Book now"}/>
+                                <div>
+                                    <Link to="/login">
+                                        <Button Val={"Log In"}/>
+                                    </Link>
+                                </div><div>
+                                <Link to="/bookAppointment">
+                                    <Button Val={"Book now"}/>
+                                </Link>
+                            </div>
                             </section>
                         </nav>
                     }

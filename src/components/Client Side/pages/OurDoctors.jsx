@@ -1,6 +1,6 @@
-import Button from "../../ui/Button.jsx";
-import {DoctorsData} from "../../data.js";
-import ContextHeader from "../../ui/ContextHeader.jsx";
+import Button from "../../../ui/Button.jsx";
+import {DoctorsData} from "../../../data.js";
+import ContextHeader from "../../../ui/ContextHeader.jsx";
 
 const OurDoctors = () => {
     return (

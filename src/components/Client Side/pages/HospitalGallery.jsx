@@ -1,7 +1,7 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import Image from "../../ui/Image.jsx";
-import {GalleryData} from "../../data.js";
+import Image from "../../../ui/Image.jsx";
+import {GalleryData} from "../../../data.js";
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 

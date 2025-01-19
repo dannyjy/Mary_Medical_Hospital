@@ -1,9 +1,9 @@
-import Header from "./components/Client Side/Header";
-import Footer from "./components/Client Side/Footer";
-import AboutUs from "./components/Client Side/AboutUs";
-import OurDoctors from "./components/Client Side/OurDoctors.jsx";
-import HospitalGallery from "./components/Client Side/HospitalGallery.jsx";
-import TrustedCompanies from "./components/Client Side/TrustedCompanies.jsx";
+import Header from "./pages/Header.jsx";
+import Footer from "./pages/Footer.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+import OurDoctors from "./pages/OurDoctors.jsx";
+import HospitalGallery from "./pages/HospitalGallery.jsx";
+import TrustedCompanies from "./pages/TrustedCompanies.jsx";
 
 const App = () => {
     return (

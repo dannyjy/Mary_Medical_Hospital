@@ -1,5 +1,5 @@
-import ContextHeader from "../../ui/ContextHeader.jsx";
-import {AboutUsData} from "../../data.js";
+import ContextHeader from "../../../ui/ContextHeader.jsx";
+import {AboutUsData} from "../../../data.js";
 
 const AboutUs = () => {
     return (

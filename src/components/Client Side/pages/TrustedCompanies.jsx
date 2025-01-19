@@ -1,7 +1,7 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import { FreeMode, Autoplay } from 'swiper/modules';
-import {TrustedCompaniesData} from "../../data.js";
+import {TrustedCompaniesData} from "../../../data.js";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const TrustedCompanies = () => {
