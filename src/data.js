@@ -62,17 +62,17 @@ export const AboutUsData = [
 
 export const TrustedCompaniesData = [
     {
-        imageUrl:'/Images/med1.png',
+        imageUrl:'/Images/med3.png',
     },{
         imageUrl:'/Images/med2.png',
     },{
-        imageUrl:'/Images/med3.png',
-    },{
-        imageUrl:'/Images/med4.png',
+        imageUrl:'/Images/med6.png',
     },{
         imageUrl:'/Images/med5.png',
     },{
-        imageUrl:'/Images/med6.png',
+        imageUrl:'/Images/med4.png',
+    },{
+        imageUrl:'/Images/med1.png',
     },
 ]
 

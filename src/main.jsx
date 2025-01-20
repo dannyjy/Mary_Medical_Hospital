@@ -9,7 +9,6 @@ import Appointments from "./components/Doctors side/pages/Appointments.jsx";
 import Canceled from "./components/Doctors side/pages/Canceled.jsx";
 import Rescheduled from "./components/Doctors side/pages/Rescheduled.jsx";
 import Profile from "./components/Doctors side/pages/Profile.jsx";
-import Footer from "./components/Doctors side/components/Footer.jsx";
 import BookAppointment from "./components/Client Side/pages/BookAppointment.jsx";
 import Login from "./components/Client Side/pages/Login.jsx";
 import SignUp from "./components/Client Side/pages/SignUp.jsx";
@@ -63,10 +62,6 @@ const router = createBrowserRouter([
                 element: <Rescheduled />,
             },
         ]
-    },
-    {
-        path: "/",
-        element: <Footer />,
     },
 ])
 

@@ -7,8 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 const HospitalGallery = () => {
     return (
-        <div className="grid justify-items-center pt-4 px-5">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold">Mary Medical Hospital</h1>
+        <div className="grid justify-items-center py-10 px-5">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold pb-8">Mary Medical Hospital</h1>
             <Swiper
                 freeMode={true}
                 breakpoints={{

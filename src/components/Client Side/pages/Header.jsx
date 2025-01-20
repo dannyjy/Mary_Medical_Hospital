@@ -4,7 +4,7 @@ import { IoMdMenu, IoIosClose } from "react-icons/io";
 import {Link} from "react-router-dom";
 
 const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(true);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const handleMenuOpen = () => {
         setIsMenuOpen(!isMenuOpen);

@@ -1,10 +1,11 @@
 import Button from "../../../ui/Button.jsx";
 import {DoctorsData} from "../../../data.js";
 import ContextHeader from "../../../ui/ContextHeader.jsx";
+import {Link} from "react-router-dom";
 
 const OurDoctors = () => {
     return (
-        <div className="grid justify-items-center px-5">
+        <div className="grid justify-items-center px-5 py-12">
             <ContextHeader
                 heading="Our Doctors"
                 Deatails="
@@ -32,7 +33,9 @@ const DoctorCards = ({imageUrl,Speciality,doctorsName,basicDetails}) => {
                 <h1 className="text-2xl">{doctorsName}</h1>
                 <p className="text-[1.1rem] py-2">{basicDetails}</p>
                 <article className="flex items-center justify-between gap-4">
-                    <Button Val={"Book now"}/>
+                    <Link to="/BookAppointment">
+                        <Button Val={"Book now"}/>
+                    </Link>
                     <h2 className={"text-xl"}>See More</h2>
                 </article>
             </div>

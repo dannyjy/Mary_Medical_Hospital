@@ -46,7 +46,7 @@ const Form = () =>{
                     </aside>
                 </section>
                 <label htmlFor="" className="text-xl pb-2">Message</label>
-                <textarea name="" id="" cols="30" rows="10" className="w-full rounded-xl px-2 pt-2 mt-1 text outline-none" placeholder="Your message...."></textarea>
+                <textarea name="" id="" cols="30" rows="10" className="w-full rounded-xl px-2 pt-2 mt-1 text outline-none max-h-[150px]" placeholder="Your message...."></textarea>
                 <button type="submit" className="w-full border-2 rounded-xl mt-3 h-12 bg-gray-500 text-white">Submit</button>
             </form>
         </div>

@@ -1,8 +1,9 @@
+// eslint-disable-next-line react/prop-types
 export default function RouteMovement({Icon, DirectionName}) {
     return (
-        <div className="grid justify-items-center lg:flex lg:items-center gap-2">
+        <div className="flex items-center gap-2">
             <section>{Icon}</section>
-            <li className="list-none text-[.8rem] text-center lg:text-xl text-white">{DirectionName}</li>
+            <li className="list-none text-center text-xl">{DirectionName}</li>
         </div>
     )
 }
