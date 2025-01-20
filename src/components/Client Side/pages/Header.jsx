@@ -16,21 +16,19 @@ const Header = () => {
                     <h1 className="text-2xl lg:text-4xl text-white font-semibold">MARY MEDICAL HOSPITAL</h1>
                     <nav className="flex items-center justify-between gap-4 bg-[#80808080] px-5 py-4 rounded-2xl max-lg:hidden">
                         <ul className="flex items-center justify-between gap-4 text-white text-xl ">
-                            <div>
+                            <div className="flex gap-4">
                                 <Link to="/">
                                     <li>Home</li>
                                 </Link>
-                            </div> <div>
-                                <Link to="/">
+                                <Link to="/AboutUs">
                                     <li>About Us</li>
                                 </Link>
                             </div>
                         </ul>
-                            <div>
+                            <div className="flex gap-4">
                                 <Link to="/login">
                                     <Button Val={"Log In"}/>
                                 </Link>
-                            </div><div>
                                 <Link to="/bookAppointment">
                                     <Button Val={"Book now"}/>
                                 </Link>
@@ -39,21 +37,24 @@ const Header = () => {
                     {isMenuOpen ? <IoIosClose className="text-4xl text-white lg:hidden" onClick={handleMenuOpen}/> : <IoMdMenu className="text-4xl text-white lg:hidden" onClick={handleMenuOpen}/>}
                     {
                         isMenuOpen &&
-                        <nav className="absolute top-20 right-2 bg-[#80808080] rounded w-full h-[86%] flex justify-center align-center lg:hidden">
-                            <section>
-                                <ul className="text-white text-xl">
-                                    <li>Home</li>
-                                    <li>AboutUs</li>
+                        <nav className="absolute text-center gap-2 top-20 right-0 bg-[#EFF0F1] rounded w-full h-screen flex justify-center items-center lg:hidden">
+                            <section className="flex flex-col justify-center">
+                                <ul className="font-medium text-xl pb-4">
+                                    <Link to="/">
+                                        <li>Home</li>
+                                    </Link>
+                                    <Link to="/AboutUs">
+                                        <li>About Us</li>
+                                    </Link>
                                 </ul>
-                                <div>
+                                <div className="flex gap-4">
                                     <Link to="/login">
                                         <Button Val={"Log In"}/>
                                     </Link>
-                                </div><div>
-                                <Link to="/bookAppointment">
-                                    <Button Val={"Book now"}/>
-                                </Link>
-                            </div>
+                                    <Link to="/bookAppointment">
+                                        <Button Val={"Book now"}/>
+                                    </Link>
+                                </div>
                             </section>
                         </nav>
                     }

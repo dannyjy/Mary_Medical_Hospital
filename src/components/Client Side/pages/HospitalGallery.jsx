@@ -1,7 +1,7 @@
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import Image from "../../../ui/Image.jsx";
-import {GalleryData} from "../../../data.js";
+import {GalleryData} from "../../../data.jsx";
 import { FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -16,7 +16,7 @@ const HospitalGallery = () => {
                         slidesPerView: 1,
                         spaceBetween: 15,
                     },
-                    640: {
+                    580: {
                         slidesPerView: 2,
                         spaceBetween: 20,
                     },
@@ -24,7 +24,7 @@ const HospitalGallery = () => {
                         slidesPerView: 3,
                         spaceBetween: 20,
                     },
-                    1024: {
+                    1280: {
                         slidesPerView: 4,
                         spaceBetween: 20,
                     },

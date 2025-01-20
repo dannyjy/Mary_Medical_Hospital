@@ -1,5 +1,5 @@
 import Button from "../../../ui/Button.jsx";
-import {DoctorsData} from "../../../data.js";
+import {DoctorsData} from "../../../data.jsx";
 import ContextHeader from "../../../ui/ContextHeader.jsx";
 import {Link} from "react-router-dom";
 

@@ -1,16 +1,26 @@
+import {AboutUsData} from "../../../data.jsx";
+import {useLocation} from "react-router-dom";
 import ContextHeader from "../../../ui/ContextHeader.jsx";
-import {AboutUsData} from "../../../data.js";
+import {useEffect} from "react";
 
 const AboutUs = () => {
+    const location = useLocation();
+    useEffect(() => {
+        const aboutUsSection = document.getElementById("aboutUsSection");
+        if (aboutUsSection) {
+            aboutUsSection.scrollIntoView({behavior: "smooth"});
+        }
+    }, [location]);
+
     return (
-        <div className="grid justify-items-center px-5 lg:px-8 py-8">
+        <div className="grid justify-items-center px-5 lg:px-8 py-8" id="aboutUsSection">
             <ContextHeader
                 heading="About Us"
                 Deatails="
                     No one shall be subjected to arbitrary arrest, detention or exile. Everyone is entitled in full equality to a fair and public hearing by an independent and impartial tribunal, in the determination of his rights and obligations and of any criminal charge against him.
                 "
             />
-            <section className={"py-8"}>
+            <section>
                 {
                     AboutUsData.map((item, index) => (
                         <AboutUsComponent key={index} headerDescription={item.header} content={item.content} />
@@ -21,6 +31,7 @@ const AboutUs = () => {
     )
 }
 
+// eslint-disable-next-line react/prop-types
 const AboutUsComponent = ({headerDescription, content}) => {
     return (
         <div className="py-2">

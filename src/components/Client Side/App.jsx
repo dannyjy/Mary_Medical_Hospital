@@ -1,9 +1,9 @@
 import Header from "./pages/Header.jsx";
 import Footer from "./pages/Footer.jsx";
-import AboutUs from "./pages/AboutUs.jsx";
 import OurDoctors from "./pages/OurDoctors.jsx";
 import HospitalGallery from "./pages/HospitalGallery.jsx";
 import TrustedCompanies from "./pages/TrustedCompanies.jsx";
+import {Outlet} from "react-router";
 
 const App = () => {
     return (
@@ -12,7 +12,7 @@ const App = () => {
             <div className="max-w-[1400px] m-auto">
                 <HospitalGallery/>
                 <OurDoctors/>
-                <AboutUs />
+                <Outlet/>
                 <TrustedCompanies/>
                 <Footer />
             </div>
