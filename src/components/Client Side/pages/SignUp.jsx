@@ -1,20 +1,43 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import {useState} from "react";
+import { useState } from "react";
 
 const SignUp = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = () => {
-    axios.post('http://localhost:3555/register', {name,email,password})
-        .then(result => {
-          console.log(result)
-          console.log(result.data)
-          alert("Account created successfully")
-        })
-        .catch(err => console.log(err))
+    if (!name || !email || !password) {
+      setError("All fields are required.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must be at least 8 characters long, contain letters and numbers."
+      );
+      return;
+    }
+
+    axios
+      .post("http://localhost:3555/register", { name, email, password })
+      .then((result) => {
+        console.log(result);
+        console.log(result.data);
+        alert("Account created successfully");
+        setError("");
+      })
+      .catch((err) => setError(err.message));
   };
 
   return (
@@ -31,7 +54,7 @@ const SignUp = () => {
             />
           </Link>
           <h1 className="text-xl sm:text-2xl lg:text-3xl mb-2">SIGNUP</h1>
-          <form >
+          <form>
             <div>
               <label
                 htmlFor="name"
@@ -48,7 +71,6 @@ const SignUp = () => {
                 className="mt-1 block w-full p-2 border border-gray-200 h-12 rounded-md"
               />
             </div>
-
             <div className="mt-4">
               <label
                 htmlFor="email"
@@ -65,7 +87,6 @@ const SignUp = () => {
                 className="mt-1 block w-full p-2 border h-12 border-gray-200 rounded-md"
               />
             </div>
-
             <div className="mt-4">
               <label
                 htmlFor="password"
@@ -83,7 +104,7 @@ const SignUp = () => {
                 className="mt-1 block w-full p-2 h-12 border border-gray-200 rounded-md"
               />
             </div>
-
+            {error && <p className="error text-red-500 mt-4">{error}</p>}{" "}
             <button
               type="button"
               onClick={handleSubmit}
@@ -98,7 +119,6 @@ const SignUp = () => {
               </Link>
             </p>
           </form>
-          {/*{error && <p className="error text-red-500 mt-4">{error}</p>}*/}
         </div>
       </div>
     </div>
