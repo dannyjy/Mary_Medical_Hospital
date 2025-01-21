@@ -1,31 +1,50 @@
-import {Link} from "react-router-dom";
-import {useState} from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 
 const BookAppointment = () => {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [contact, setContact] = useState('');
+  const [doctor, setDoctor] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [comment, setComment] = useState('');
+  const [gender, setGender] = useState('');
+  const [errors, setErrors] = useState({});
 
-  const [name, setName] = useState();
-  const [age, setAge] = useState();
-  const [contact, setContact] = useState();
-  const [doctor, setDoctor] = useState();
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
-  const [comment, setComment] = useState();
-  const [gender, setGender] = useState();
+  const validate = () => {
+    const newErrors = {};
+
+    if (!name) newErrors.name = 'Name is required';
+    if (!gender) newErrors.gender = 'Gender is required';
+    if (!age) newErrors.age = 'Age is required';
+    if (age && (isNaN(age) || age <= 0)) newErrors.age = 'Age must be a positive number';
+    if (!contact) newErrors.contact = 'Contact is required';
+    if (!doctor) newErrors.doctor = 'Doctor selection is required';
+    if (!date) newErrors.date = 'Date is required';
+    if (!time) newErrors.time = 'Time is required';
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = () => {
-    axios.post('http://localhost:3555/bookingAppointment', {name,age,contact,doctor,date,time,comment})
+    if (validate()) {
+      axios.post('http://localhost:3555/bookingAppointment', { name, age, contact, doctor, date, time, comment, gender })
         .then(result => {
-          console.log(result)
-          console.log(result.data)
-          alert("Booking Successful")
+          console.log(result);
+          console.log(result.data);
+          alert("Booking Successful");
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
+    }
   };
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col sm:flex-row h-auto m-auto sm:h-[46rem] w-full sm:w-[70rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
+      <div className="flex flex-col sm:flex-row h-auto m-auto sm:h-[52rem] w-full sm:w-[70rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
         <div className="w-full p-4 sm:py-6 sm:px-8 md:px-16 lg:px-24 border rounded-lg bg-slate-100">
           <Link to="/">
             <img
@@ -40,7 +59,7 @@ const BookAppointment = () => {
             Book an Appointment
           </h1>
 
-          <form >
+          <form>
             <div className="mb-4">
               <label
                 htmlFor="name"
@@ -52,12 +71,18 @@ const BookAppointment = () => {
                 type="text"
                 id="name"
                 name="name"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your full name"
-                className={`mt-1 block w-full h-12 p-2 border border-gray-200 rounded-md`}
+                className={`mt-1 block w-full h-12 p-2 border rounded-md ${
+                  errors.name && "border-red-500"
+                }`}
               />
-
+              {errors.name && (
+                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              )}
             </div>
+
             <div className="mb-2">
               <h4 className="text-lg font-medium text-gray-700">Gender</h4>
               <div className="flex items-center">
@@ -85,7 +110,9 @@ const BookAppointment = () => {
                 />
                 <label htmlFor="female">Female</label>
               </div>
-
+              {errors.gender && (
+                <p className="text-red-500 text-xs mt-1">{errors.gender}</p>
+              )}
             </div>
 
             <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -100,15 +127,21 @@ const BookAppointment = () => {
                   type="number"
                   id="age"
                   name="age"
+                  value={age}
                   onChange={(e) => setAge(e.target.value)}
-                  className={`mt-1 block w-full h-12 p-2 border border-gray-200 rounded-md `}
+                  className={`mt-1 block w-full h-12 p-2 border rounded-md ${
+                    errors.age && "border-red-500"
+                  }`}
                 />
-
+                {errors.age && (
+                  <p className="text-red-500 text-xs mt-1">{errors.age}</p>
+                )}
               </div>
+
               <div>
                 <label
                   htmlFor="contact"
-                  className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700"
+                  className="block text-sm sm:text-base lg:text-lg font-medium text "
                 >
                   Contact
                 </label>
@@ -118,9 +151,13 @@ const BookAppointment = () => {
                   name="contact"
                   onChange={(e) => setContact(e.target.value)}
                   placeholder="+250"
-                  className={`mt-1 block w-full p-2 h-12 border border-gray-200 rounded-md`}
+                  className={`mt-1 block w-full p-2 h-12 border border-gray-200 rounded-md ${
+                    errors.contact && "border-red-500"
+                  }`}
                 />
-
+                {errors.contact && (
+                  <p className="text-red-500 text-xs mt-1">{errors.contact}</p>
+                )}
               </div>
             </div>
 
@@ -137,7 +174,12 @@ const BookAppointment = () => {
                 onChange={(e) => setDoctor(e.target.value)}
                 className={`w-full border px-2 h-12 rounded-[6px]`}
               >
-                <option value="" className="text-gray-300">
+                <option
+                  value=""
+                  className={`text-gray-300 ${
+                    errors.doctor && "border-red-500"
+                  }`}
+                >
                   Select a doctor
                 </option>
                 <option value="Dr. John Doe">Dr. John Doe</option>
@@ -147,7 +189,9 @@ const BookAppointment = () => {
                 <option value="Dr. Michael Brown">Dr. Michael Brown</option>
                 <option value="Dr. Sarah Johnson">Dr. Sarah Johnson</option>
               </select>
-
+              {errors.doctor && (
+                <p className="text-red-500 text-xs mt-1">{errors.doctor}</p>
+              )}
             </div>
 
             <div className="mb-4 mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -163,10 +207,11 @@ const BookAppointment = () => {
                   id="date"
                   name="date"
                   onChange={(e) => setDate(e.target.value)}
-                  className={`mt-1 block w-full h-12 p-2 border border-gray-200 rounded-md border-red-500" : ""
+                  className={`mt-1 block w-full h-12 p-2 border border-gray-200 rounded-md ${
+                    errors.date && "border-red-500"
                   }`}
                 />
-
+                <p className="text-red-500 text-xs mt-1">{errors.date}</p>
               </div>
               <div>
                 <label
@@ -180,10 +225,11 @@ const BookAppointment = () => {
                   id="time"
                   name="time"
                   onChange={(e) => setTime(e.target.value)}
-                  className={`mt-1 block w-full h-12 p-2 border border-gray-200 rounded-md border-red-500" : ""
+                  className={`mt-1 block w-full h-12 p-2 border border-gray-200 rounded-md ${
+                    errors.time && "border-red-500"
                   }`}
                 />
-
+                <p className="text-red-500 text-xs mt-1">{errors.time}</p>
               </div>
             </div>
 
@@ -202,7 +248,7 @@ const BookAppointment = () => {
                 className="mt-1 block w-full h-30 p-2 border border-gray-200 rounded-md"
               ></textarea>
             </div>
-            
+
             <button
               type="button"
               onClick={handleSubmit}
@@ -210,7 +256,6 @@ const BookAppointment = () => {
             >
               Book Appointment
             </button>
-            
           </form>
         </div>
       </div>
