@@ -1,31 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
+import {useState} from "react";
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      const response = await axios.post("http://localhost:3000/signup", {
-        name,
-        email,
-        password,
-      });
-      if (response.status === 201) {
-        alert("Sign-up successful");
-        // Perform actions on successful signup, like redirecting the user
-      }
-    } catch (error) {
-      console.error("There was an error!", error);
-      setError("Sign-up failed. Please try again.");
-    }
+  const handleSubmit = () => {
+    axios.post('http://localhost:3555/register', {name,email,password})
+        .then(result => {
+          console.log(result)
+          console.log(result.data)
+          alert("Account created successfully")
+        })
+        .catch(err => console.log(err))
   };
 
   return (
@@ -36,13 +25,13 @@ const SignUp = () => {
             <img
               width={30}
               height={30}
-              src="/public/images/home2.svg"
+              src="/images/home2.svg"
               alt=""
               className="mb-8"
             />
           </Link>
           <h1 className="text-xl sm:text-2xl lg:text-3xl mb-2">SIGNUP</h1>
-          <form onSubmit={handleSubmit}>
+          <form >
             <div>
               <label
                 htmlFor="name"
@@ -54,7 +43,6 @@ const SignUp = () => {
                 type="text"
                 id="name"
                 name="name"
-                value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your full name"
                 className="mt-1 block w-full p-2 border border-gray-200 h-12 rounded-md"
@@ -72,7 +60,6 @@ const SignUp = () => {
                 type="email"
                 id="email"
                 name="email"
-                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 className="mt-1 block w-full p-2 border h-12 border-gray-200 rounded-md"
@@ -89,8 +76,8 @@ const SignUp = () => {
               <input
                 type="password"
                 id="password"
+                autoComplete="off"
                 name="password"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 className="mt-1 block w-full p-2 h-12 border border-gray-200 rounded-md"
@@ -98,7 +85,8 @@ const SignUp = () => {
             </div>
 
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               className="bg-blue-400 text-white py-2 px-8 mt-10 rounded"
             >
               Sign Up
@@ -110,7 +98,7 @@ const SignUp = () => {
               </Link>
             </p>
           </form>
-          {error && <p className="error text-red-500 mt-4">{error}</p>}
+          {/*{error && <p className="error text-red-500 mt-4">{error}</p>}*/}
         </div>
       </div>
     </div>

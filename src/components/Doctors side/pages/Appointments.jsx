@@ -1,20 +1,35 @@
 import AppointmentHeader from "../../../ui/AppointmentHeader.jsx";
-import {BookAppointmentData} from "../doctorData.js";
 import RecievedAppointmentCard from "../../../ui/RecievedAppointmentCard.jsx";
+import {useEffect, useState} from "react";
 
 const Appointments = () => {
+    const [appointments, setAppointments] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () =>{
+            try {
+                const response = await fetch("http://localhost:3555/bookingAppointment");
+                const data = await response.json();
+                setAppointments(data)
+            } catch (err){
+                console.log(err)
+            }
+        }
+        fetchData()
+    }, []);
+
     return (
         <div className="">
             <AppointmentHeader heading="Book Appointment"/>
             <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4">
                 {
-                    BookAppointmentData.map((appoinitment,index) =>(
+                    appointments.map((appoinitment,index) =>(
                         <RecievedAppointmentCard key={index}
-                            name={appoinitment.Name}
+                            name={appoinitment.name}
                             date={appoinitment.date}
                             time={appoinitment.time}
-                            description={appoinitment.Description}
-                            age={appoinitment.Age}
+                            description={appoinitment.comment}
+                            age={appoinitment.age}
                             contact={appoinitment.contact}
                         />
                     ))
