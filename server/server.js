@@ -4,7 +4,6 @@ const MongoDB = require('./db')
 const SignUpModel = require('./models/SignUp');
 const BookingModel = require('./models/BookAppointment');
 
-
 const app = express();
 app.use(express.json())
 app.use(cors({
@@ -36,6 +35,11 @@ app.post("/register",(req,res) =>{
             console.log(err)
         res.json(err)
         })
+})
+app.get("/register",(req,res) =>{
+    SignUpModel.find()
+        .then(booking => res.json(booking))
+        .catch(err => res.json(err))
 })
 
 app.listen(port, () => {

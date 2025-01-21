@@ -1,43 +1,49 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      const response = await axios.post("http://localhost:3000/api/doctor_login", {
-        email,
-        password,
-      });
-      if (response.status === 200) {
-        alert("Login successful");
+  // const email = document.getElementById('email');
+  // const password = document.getElementById('password');
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [login, setLogin] = useState();
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  // }, []);
+
+    const handleLogIn = async (e) =>{
+      e.preventDefault()
+      const response = await fetch("http://localhost:3555/register");
+      const data = await response.json();
+      setLogin(data)
+
+      if (email == login.email && password == login.password){
+        alert("Login Successful")
+        // navigate("/Home")
       }
-    } catch (error) {
-      setError("Invalid email or password");
+      else{
+        alert("Invalid Credentials")
+      }
     }
-  };
 
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col sm:flex-row h-auto m-auto sm:h-[38rem] w-full sm:w-[40rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
-        <div className="w-full p-8 sm:py-6 border rounded-lg bg-slate-100">
+        <div className="w-full p-8 sm:py-6 border rounded-2xl bg-slate-100">
           <Link to="/">
             <img
               width={30}
               height={30}
-              src="/public/images/home2.svg"
+              src="/Images/home2.svg"
               alt=""
               className="mb-8"
             />
           </Link>
           <h1 className="text-xl sm:text-2xl lg:text-3xl mb-4">LOGIN</h1>
-          <form onSubmit={handleSubmit}>
+          <form >
             <div className="mt-6">
               <label
                 htmlFor="email"
@@ -74,11 +80,9 @@ const Login = () => {
               />
             </div>
             <p className="text-blue-400 mt-4">Forgot Password</p>
-
-            {error && <p className="error text-red-500 mt-4">{error}</p>}
-
             <button
-              type="submit"
+              type="button"
+              onClick={handleLogIn}
               className="bg-blue-400 text-white py-2 px-8 mt-10 rounded"
             >
               Login

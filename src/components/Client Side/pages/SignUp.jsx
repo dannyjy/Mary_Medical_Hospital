@@ -20,12 +20,12 @@ const SignUp = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col sm:flex-row h-auto m-auto sm:h-[38rem] w-full sm:w-[40rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
-        <div className="w-full p-8 border rounded-lg bg-slate-100">
+        <div className="w-full p-8 border rounded-2xl bg-slate-100">
           <Link to="/">
             <img
               width={30}
               height={30}
-              src="/images/home2.svg"
+              src="/Images/home2.svg"
               alt=""
               className="mb-8"
             />

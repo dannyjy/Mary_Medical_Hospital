@@ -4,7 +4,6 @@ import { MdModeEdit } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaClock, FaPhoneAlt } from "react-icons/fa";
 import { IoIosInformationCircle } from "react-icons/io";
-import RouteMovement from "../../../ui/RouteMovement.jsx";
 
 const profile = () => {
     return(
@@ -27,8 +26,11 @@ const profile = () => {
                 <Profile Icon1={<FaLocationDot className="text-2xl"/>} title={"Location"} description={"Gisozi Clinic, KG 684 St, Gisozi"} />
                 <Profile Icon1={<FaPhoneAlt  className="text-2xl"/>} title={"Experience"} description={"15 years of experience"} />
                 <Profile Icon1={<FaClock className="text-2xl"/>} title={"Education"} description={"BSc, University of London"} />
-                <button className="border-2 bg-[#DFE0E2] px-3 py-3 rounded-xl mt-8 ml-12">
-                <RouteMovement Icon={<CiLogout className="text-3xl" />} DirectionName={"Log Out"} location="/" className="focus:bg-[#DFE0E2] hover:bg-[#DFE0E2] rounded-xl px-2 py-4"/>
+                <button className="" >
+                    <Link to='/Login' className="flex items-center bg-[#DFE0E2] rounded-xl mt-8 ml-12 px-6 py-3 gap-2">
+                        <CiLogout className="text-3xl" />
+                        Log Out
+                    </Link>
                 </button>
             </section>
         </div>
