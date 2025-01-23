@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const RecievedAppointmentCard = ({name,date,time,description,age,contact}) =>{
+const RecievedAppointmentCard = ({name,date,time,description,age,contact,onComplete, onCancel}) =>{
     return(
         <div className="bg-[#EFF0F1] p-4 rounded-xl shadow-[#ddd] shadow">
             <article className="flex justify-between items-center">
@@ -16,8 +16,8 @@ const RecievedAppointmentCard = ({name,date,time,description,age,contact}) =>{
             </section>
             <div className="border-t-2 border-b-black"/>
             <article className="flex justify-between items-center pt-2">
-                <button className="text-blue-500 rounded-xl">Completed</button>
-                <button className="text-red-500 rounded-xl">Cancel</button>
+                <button className="text-blue-500 rounded-xl" onClick={onComplete}>Completed</button>
+                <button className="text-red-500 rounded-xl" onClick={onCancel}>Cancel</button>
             </article>
         </div>
     )

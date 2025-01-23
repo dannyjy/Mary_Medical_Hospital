@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const MongoDB = require('./db')
 const SignUpModel = require('./models/SignUp');
+const FeedbackModel = require('./models/feedback');
 const BookingModel = require('./models/BookAppointment');
 
 const app = express();
@@ -39,6 +40,12 @@ app.post("/register",(req,res) =>{
 app.get("/register",(req,res) =>{
     SignUpModel.find()
         .then(booking => res.json(booking))
+        .catch(err => res.json(err))
+})
+
+app.post('/feedback', (req,res) => {
+    FeedbackModel.create(req.body)
+        .then(feedback => res.json(feedback))
         .catch(err => res.json(err))
 })
 

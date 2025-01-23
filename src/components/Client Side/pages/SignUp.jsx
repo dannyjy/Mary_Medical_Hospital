@@ -35,30 +35,20 @@ const SignUp = () => {
         console.log(result);
         console.log(result.data);
         alert("Account created successfully");
-        setError("");
       })
       .catch((err) => setError(err.message));
   };
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col sm:flex-row h-auto m-auto sm:h-[38rem] w-full sm:w-[40rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
-        <div className="w-full p-8 border rounded-2xl bg-slate-100">
-          <Link to="/">
-            <img
-              width={30}
-              height={30}
-              src="/Images/home2.svg"
-              alt=""
-              className="mb-8"
-            />
-          </Link>
-          <h1 className="text-xl sm:text-2xl lg:text-3xl mb-2">SIGNUP</h1>
+      <div className="flex flex-col sm:flex-row w-[36rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
+        <div className="w-full py-14 px-5 sm:px-10 border rounded-2xl bg-[#EFF0F1]">
+          <h1 className="text-4xl font-medium mb-5 text-center">SIGNUP</h1>
           <form>
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700"
+                className="text-xl font-medium text-gray-700"
               >
                 Full Name
               </label>
@@ -74,7 +64,7 @@ const SignUp = () => {
             <div className="mt-4">
               <label
                 htmlFor="email"
-                className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700"
+                className="text-xl font-medium text-gray-700"
               >
                 Email
               </label>
@@ -90,7 +80,7 @@ const SignUp = () => {
             <div className="mt-4">
               <label
                 htmlFor="password"
-                className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700"
+                className="text-xl font-medium text-gray-700"
               >
                 Password
               </label>
@@ -112,7 +102,7 @@ const SignUp = () => {
             >
               Sign Up
             </button>
-            <p className="mt-12">
+            <p className="mt-4">
               Already have an account?{" "}
               <Link to="/Login">
                 <span className="text-blue-400">Login</span>

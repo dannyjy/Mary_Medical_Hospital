@@ -1,53 +1,44 @@
 import { Link } from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 const Login = () => {
 
-  // const email = document.getElementById('email');
-  // const password = document.getElementById('password');
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [login, setLogin] = useState();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  // }, []);
-
     const handleLogIn = async (e) =>{
-      e.preventDefault()
-      const response = await fetch("http://localhost:3555/register");
-      const data = await response.json();
-      setLogin(data)
+        e.preventDefault();
+        const response = await fetch("http://localhost:3555/register");
+        const data = await response.json();
 
-      if (email == login.email && password == login.password){
-        alert("Login Successful")
-        // navigate("/Home")
-      }
-      else{
-        alert("Invalid Credentials")
-      }
+        const message = document.getElementById('message');
+        const user = data.find((user) => user.email === email && user.password === password);
+
+        if (user) {
+          navigate("/home");
+        } else {
+          if (!email && !password) {
+            message.innerHTML = "Please fill fields email and password";
+          }else if(!email || !password){
+            message.innerHTML = "Please fill all fields";
+          }else{
+            message.innerHTML = "User not found";
+          }
+        }
     }
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="flex flex-col sm:flex-row h-auto m-auto sm:h-[38rem] w-full sm:w-[40rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
-        <div className="w-full p-8 sm:py-6 border rounded-2xl bg-slate-100">
-          <Link to="/">
-            <img
-              width={30}
-              height={30}
-              src="/Images/home2.svg"
-              alt=""
-              className="mb-8"
-            />
-          </Link>
-          <h1 className="text-xl sm:text-2xl lg:text-3xl mb-4">LOGIN</h1>
-          <form >
+      <div className="flex flex-col sm:flex-row w-[36rem] bg-white dark:bg-sidebar rounded-[20px] sm:shadow-lg">
+        <div className="w-full py-14 px-5 sm:px-10 border rounded-2xl bg-[#EFF0F1]">
+          <h1 className="text-4xl font-medium mb-5 text-center">LOGIN</h1>
+          <form onSubmit={handleLogIn}>
             <div className="mt-6">
               <label
                 htmlFor="email"
-                className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700"
+                className="text-xl font-medium text-gray-700"
               >
                 Email
               </label>
@@ -55,17 +46,17 @@ const Login = () => {
                 type="email"
                 id="email"
                 name="email"
-                value={email}
+                autoComplete="on"
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="mt-1 block w-full p-2 border border-gray-200 rounded-md"
+                className="mb-4 mt-1 block w-full p-2 border border-gray-200 h-12 rounded-md"
               />
             </div>
 
-            <div className="mt-10">
+            <div className="">
               <label
                 htmlFor="password"
-                className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700"
+                className="text-xl font-medium text-gray-700"
               >
                 Password
               </label>
@@ -73,25 +64,26 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
-                value={password}
+                autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="mt-1 block w-full p-2 border border-gray-200 rounded-md"
+                className="mt-1 block w-full p-2 border border-gray-200 h-12 rounded-md"
               />
             </div>
             <p className="text-blue-400 mt-4">Forgot Password</p>
             <button
-              type="button"
-              onClick={handleLogIn}
-              className="bg-blue-400 text-white py-2 px-8 mt-10 rounded"
+              type="submit"
+
+              className="bg-blue-400 text-white py-2 px-8 mt-4 rounded"
             >
               Login
             </button>
+            <p id="message" className="text-red-600 text-center"></p>
           </form>
-          <p className="mt-12">
+          <p className="mt-4">
             New user?{" "}
             <Link to="/Login/SignUp">
-              <span className="text-blue-400">Sign up</span>
+              <span className="text-blue-400 ">Sign up</span>
             </Link>
           </p>
         </div>

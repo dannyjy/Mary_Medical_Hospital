@@ -5,6 +5,14 @@ import {useEffect, useState} from "react";
 const Appointments = () => {
     const [appointments, setAppointments] = useState([]);
 
+    const onComplete = async () => {
+
+    }
+
+    const onCancel = () => {
+
+    }
+
     useEffect(() => {
         const fetchData = async () =>{
             try {
@@ -31,6 +39,8 @@ const Appointments = () => {
                             description={appoinitment.comment}
                             age={appoinitment.age}
                             contact={appoinitment.contact}
+                            onComplete={() => onComplete(appoinitment._id)}
+                            onCancel={onCancel}
                         />
                     ))
                 }

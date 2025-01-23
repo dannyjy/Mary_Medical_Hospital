@@ -25,14 +25,9 @@ const Header = () => {
                                 </Link>
                             </div>
                         </ul>
-                            <div className="flex gap-4">
-                                <Link to="/login">
-                                    <Button Val={"Log In"}/>
-                                </Link>
-                                <Link to="/bookAppointment">
-                                    <Button Val={"Book now"}/>
-                                </Link>
-                            </div>
+                        <Link to="/bookAppointment">
+                            <Button Val={"Book now"}/>
+                        </Link>
                     </nav>
                     {isMenuOpen ? <IoIosClose className="text-4xl text-white lg:hidden" onClick={handleMenuOpen}/> : <IoMdMenu className="text-4xl text-white lg:hidden" onClick={handleMenuOpen}/>}
                     {
@@ -47,14 +42,9 @@ const Header = () => {
                                         <li>About Us</li>
                                     </Link>
                                 </ul>
-                                <div className="flex gap-4">
-                                    <Link to="/login">
-                                        <Button Val={"Log In"}/>
-                                    </Link>
-                                    <Link to="/bookAppointment">
-                                        <Button Val={"Book now"}/>
-                                    </Link>
-                                </div>
+                                <Link to="/bookAppointment">
+                                    <Button Val={"Book now"}/>
+                                </Link>
                             </section>
                         </nav>
                     }
