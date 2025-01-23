@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="grid lg:grid-cols-12 h-[100vh] bg-[#FAFAFA] relative">
-      <aside className="max-lg:hidden lg:col-span-3 2xl:col-span-2 lg:flex-col lg:flex lg:justify-between bg-[#EFF0F1] rounded-br-3xl rounded-tr-2xl">
+      <aside className="max-lg:hidden lg:col-span-3 2xl:col-span-2 lg:flex-col lg:flex lg:justify-between bg-[#EFF0F1] rounded-br-3xl rounded-tr-3xl shadow-2xl">
         <article className="flex flex-col gap-24 ">
           <Header/>
           <Section/>

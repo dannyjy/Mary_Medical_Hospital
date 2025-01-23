@@ -31,7 +31,7 @@ const BookAppointment = () => {
 
   const handleSubmit = () => {
     if (validate()) {
-      axios.post('http://localhost:3555/bookingAppointment', { name, age, contact, doctor, date, time, comment, gender })
+      axios.post('http://localhost:3555/bookingAppointment', { name, age, contact, doctor, date,completed: false,cancelled:false, time, comment, gender })
         .then(result => {
           console.log(result);
           console.log(result.data);

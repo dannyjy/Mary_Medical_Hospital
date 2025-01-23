@@ -1,16 +1,27 @@
 import AppointmentHeader from "../../../ui/AppointmentHeader.jsx";
 import RecievedAppointmentCard from "../../../ui/RecievedAppointmentCard.jsx";
 import {useEffect, useState} from "react";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Appointments = () => {
     const [appointments, setAppointments] = useState([]);
+    const navigate = useNavigate()
 
-    const onComplete = async () => {
-
+    const onComplete =  (id) => {
+        axios.patch(`http://localhost:3555/bookingAppointment/${id}`,{"completed": true})
+            .then(result => {
+                console.log(result);
+                navigate('/home/Completed')
+            })
     }
 
-    const onCancel = () => {
-
+    const onCancel = (id) => {
+        axios.patch(`http://localhost:3555/bookingAppointment/${id}`,{"cancelled": true})
+            .then(result => {
+                console.log(result);
+                navigate('/home/Cancelled')
+            })
     }
 
     useEffect(() => {
@@ -18,7 +29,15 @@ const Appointments = () => {
             try {
                 const response = await fetch("http://localhost:3555/bookingAppointment");
                 const data = await response.json();
-                setAppointments(data)
+                const newData = data.filter(ele =>{
+                    if(ele.completed === false){
+                        if(ele.cancelled === false){
+                      return ele
+                        }
+                    }
+                })
+                console.log(newData)
+                setAppointments(newData)
             } catch (err){
                 console.log(err)
             }
@@ -31,7 +50,7 @@ const Appointments = () => {
             <AppointmentHeader heading="Book Appointment"/>
             <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4">
                 {
-                    appointments.map((appoinitment,index) =>(
+                    appointments.length > 0 &&appointments.map((appoinitment,index) =>(
                         <RecievedAppointmentCard key={index}
                             name={appoinitment.name}
                             date={appoinitment.date}
@@ -40,11 +59,12 @@ const Appointments = () => {
                             age={appoinitment.age}
                             contact={appoinitment.contact}
                             onComplete={() => onComplete(appoinitment._id)}
-                            onCancel={onCancel}
+                            onCancel={() => onCancel(appoinitment._id)}
                         />
                     ))
                 }
             </div>
+            <p className="text-2xl text-center mt-8">{appointments.length === 0 && "There is no Appintments"}</p>
         </div>
     )
 }

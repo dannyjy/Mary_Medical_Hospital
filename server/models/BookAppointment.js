@@ -8,6 +8,8 @@ const BookingSchema = new mongoose.Schema({
     doctor: String,
     date: String,
     time: String,
+    completed: Boolean,
+    cancelled: Boolean,
     comment: String
 })
 

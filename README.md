@@ -1,8 +1,36 @@
-# React + Vite
+# Mary Medical Hospital
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- It is medical systems that helps client book appointments at Mary Medical hospital.
+- It also include the Doctors side that the doctor can access the people who booked an appointments assignment to them.
 
-Currently, two official plugins are available:
+# Run Program
+Open terminal then
+- run yarn dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Add another tab of the terminal then
+- cd server
+- run yarn start
+
+# Project Tools and Technologies 💻️ 
+
+# Package manger
+- Yarn
+# FrontEnd
+- React +Vite
+    - React Router Dom
+    - Swiper Js
+# BackEnd
+- MongoDb
+    - Mongoose
+- Node js
+    - express Js
+    - cors
+    - nodemon
+
+
+- After cloning the repostory
+  Open the terminal of your code editor:
+    - run yarn
+      To install all node modules dependencies.
+    - cd server
+      run yarn also to install all the backend node modules

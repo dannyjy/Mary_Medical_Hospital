@@ -20,6 +20,14 @@ app.post("/bookingAppointment",(req,res) =>{
         .then(booking => res.json(booking))
         .catch(err => res.json(err))
 })
+
+app.patch("/bookingAppointment/:id",(req,res) =>{
+    const id = req.params.id
+    BookingModel.findByIdAndUpdate(id, {...req.body})
+        .then(booking => res.json(booking))
+        .catch(err => res.json(err))
+})
+
 app.get("/bookingAppointment",(req,res) =>{
     BookingModel.find()
         .then(booking => res.json(booking))

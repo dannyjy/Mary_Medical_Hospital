@@ -1,6 +1,6 @@
 import {FaCalendarCheck} from "react-icons/fa6";
 import {SiTicktick} from "react-icons/si";
-import {FaRegShareSquare, FaTrash} from "react-icons/fa";
+import {FaTrash} from "react-icons/fa";
 
 export const GalleryData = [
     {
@@ -121,9 +121,10 @@ export const RouteAppointmentsData = [
         location: "/home/Completed",
         Icon: <SiTicktick className="text-3xl"/>,
         DirectionName: 'Completed',
-    }, {
-        location: "/home/Rescheduled",
-        Icon: <FaRegShareSquare className="text-3xl"/>,
-        DirectionName: 'Rescheduled',
     },
+    // {
+    //     location: "/home/Rescheduled",
+    //     Icon: <FaRegShareSquare className="text-3xl"/>,
+    //     DirectionName: 'Rescheduled',
+    // },
 ]
