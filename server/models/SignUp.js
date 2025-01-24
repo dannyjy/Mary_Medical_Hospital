@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 const SignUpSchema = new mongoose.Schema({
     name: String,
+    phone: String,
+    specialty: String,
+    basicDetails: String,
+    image: String,
     email: {
         type: String,
         unique: true,

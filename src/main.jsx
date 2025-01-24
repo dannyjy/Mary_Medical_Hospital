@@ -13,6 +13,7 @@ import BookAppointment from "./components/Client Side/pages/BookAppointment.jsx"
 import Login from "./components/Client Side/pages/Login.jsx";
 import SignUp from "./components/Client Side/pages/SignUp.jsx";
 import AboutUs from "./components/Client Side/pages/AboutUs.jsx";
+import CheckAppointments from "./components/Client Side/pages/CheckAppointments.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                 element: <AboutUs />,
             },
         ]
+    },
+    {
+      path: "/CheckAppointment",
+      element: <CheckAppointments />,
     },
     {
         path: "/bookAppointment",

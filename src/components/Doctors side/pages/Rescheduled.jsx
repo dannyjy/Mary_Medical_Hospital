@@ -14,8 +14,7 @@ const Rescheduled = () => {
                     //          date={appoinitment.date}
                     //          time={appoinitment.time}
                     //          description={appoinitment.Description}
-                    //          age={appoinitment.Age}
-                    //          contact={appoinitment.contact}
+                    //          age=                    //          contact={appoinitment.contact}{appoinitment.Age}
                     //     />
                     // ))
                 }

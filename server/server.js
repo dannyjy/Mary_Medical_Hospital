@@ -42,9 +42,10 @@ app.post("/register",(req,res) =>{
         })
         .catch(err => {
             console.log(err)
-        res.json(err)
+            res.json(err)
         })
 })
+
 app.get("/register",(req,res) =>{
     SignUpModel.find()
         .then(booking => res.json(booking))

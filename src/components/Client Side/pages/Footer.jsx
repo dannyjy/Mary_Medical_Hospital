@@ -64,7 +64,7 @@ const Form = () =>{
 
     return (
         <div className="max-sm:pt-4 lg:px-24">
-            <h1 className="pb-3 text-3xl font-medium ">Contact Us</h1>
+            <h1 className="pb-3 text-3xl font-medium ">Feed Back</h1>
             <form action="">
                 <section className="grid grid-cols-2 gap-2 pb-2">
                     <div>

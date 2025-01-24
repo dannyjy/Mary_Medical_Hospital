@@ -2,8 +2,24 @@ import Button from "../../../ui/Button.jsx";
 import {DoctorsData} from "../../../data.jsx";
 import ContextHeader from "../../../ui/ContextHeader.jsx";
 import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 const OurDoctors = () => {
+    const [doctorsData, setDoctorsData] = useState([]);
+
+    useEffect(() => {
+        const fetchDoctors = async () => {
+            try {
+                const response = await fetch("http://localhost:3555/register");
+                const data = await response.json();
+                setDoctorsData(data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchDoctors();
+    }, []);
+
     return (
         <div className="grid justify-items-center px-5 py-12">
             <ContextHeader
@@ -14,8 +30,12 @@ const OurDoctors = () => {
             />
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {
-                    DoctorsData.map((doctor,index) => (
-                        <DoctorCards key={index} imageUrl={doctor.imageUrl} Speciality={doctor.specality} doctorsName={doctor.doctorName} basicDetails={doctor.basicDetail}/>
+                    doctorsData.map((doctor,index) => (
+                        <DoctorCards key={index}
+                            imageUrl={doctor.image}
+                             Speciality={doctor.specialty}
+                             doctorsName={doctor.name}
+                             basicDetails={doctor.basicDetails}/>
                     ))
                 }
             </section>
