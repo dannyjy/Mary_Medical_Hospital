@@ -26,7 +26,7 @@ const Header = () => {
                             </div>
                         </ul>
                         <Link to="/CheckAppointment">
-                            <Button Val={"Check Appointment"}/>
+                            <Button Val={"Reschedule"}/>
                         </Link>
                         <Link to="/bookAppointment">
                             <Button Val={"Book now"}/>

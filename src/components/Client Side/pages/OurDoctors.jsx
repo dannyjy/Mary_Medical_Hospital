@@ -1,5 +1,4 @@
 import Button from "../../../ui/Button.jsx";
-import {DoctorsData} from "../../../data.jsx";
 import ContextHeader from "../../../ui/ContextHeader.jsx";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -47,7 +46,7 @@ const OurDoctors = () => {
 const DoctorCards = ({imageUrl,Speciality,doctorsName,basicDetails}) => {
     return (
         <section className="grid grid-rows-[1fr] rounded-2xl overflow-hidden border-2 border-b-white bg-[#EFF0F1]">
-            <img src={imageUrl} className="w-full" alt="" />
+            <img src={"http://localhost:3555"+imageUrl} className="w-full" alt="" />
             <div className="px-6 py-4">
                 <h3>{Speciality}</h3>
                 <h1 className="text-2xl">{doctorsName}</h1>

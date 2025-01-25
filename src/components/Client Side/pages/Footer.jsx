@@ -4,15 +4,21 @@ import {useState} from "react";
 
 const Footer = () => {
     return (
-        <div className="grid sm:grid-cols-2 px-5 py-14 bg-[#F4F5F5] rounded-t-xl lg:px-24">
-            <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-10 col-span-1">
-                {
-                 FooterData.map((item, i) => (
-                    <FooterLinks key={i} footerHeading={item.footerHeader} Link1={item.link1} Link2={item.link2} Link3={item.link3} Link4={item.link4}/>
-                 ))
-                }
+        <div className="px-5 py-14 bg-[#F4F5F5] rounded-t-xl lg:px-24">
+            <aside className="grid sm:grid-cols-2">
+                <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-10 col-span-1">
+                    {
+                     FooterData.map((item, i) => (
+                        <FooterLinks key={i} footerHeading={item.footerHeader} Link1={item.link1} Link2={item.link2} Link3={item.link3} Link4={item.link4}/>
+                     ))
+                    }
+                </section>
+                <Form className="col-span-1"/>
+            </aside>
+            <section className="mt-8">
+                <div className="border-t-2 border-gray-400"/>
+                <h1 className="text-center text-xl text-gray-400 pt-3">Mary Medicial Hospitial, Already Copyright © 2025</h1>
             </section>
-            <Form className="col-span-1"/>
         </div>
     )
 }
@@ -63,7 +69,7 @@ const Form = () =>{
     }
 
     return (
-        <div className="max-sm:pt-4 lg:px-24">
+        <div className="max-sm:pt-4 lg:px-20">
             <h1 className="pb-3 text-3xl font-medium ">Feed Back</h1>
             <form action="">
                 <section className="grid grid-cols-2 gap-2 pb-2">
@@ -74,6 +80,7 @@ const Form = () =>{
                                placeholder="Name"
                                onChange={(e) => setName(e.target.value)}
                         />
+
                         {error.name && (<p className="text-red-500 text-xs mt-1">{error.name}</p>)}
                     </div>
                     <aside>

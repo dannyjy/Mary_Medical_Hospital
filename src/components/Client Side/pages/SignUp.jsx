@@ -32,21 +32,26 @@ const SignUp = () => {
       );
       return;
     }
-
+    // console.log(image)
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(image);
+    fileReader.onload = () => {
+      console.log(fileReader.result);
     axios
-      .post("http://localhost:3555/register", { name,phone,specialty,basicDetails,email,image,password })
+      .post("http://localhost:3555/register", { name,phone,specialty,basicDetails,email,image:fileReader.result,password })
       .then((result) => {
         console.log(result);
         console.log(result.data);
         alert("Account created successfully");
       })
       .catch((err) => setError(err.message));
+    };
   };
 
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col sm:flex-row w-[40rem] bg-white dark:bg-sidebar rounded-[20px] shadow sm:shadow-lg">
-        <div className="w-full py-14 px-5 sm:px-10 border rounded-2xl bg-[#EFF0F1]">
+        <div className="w-full py-10 px-5 sm:px-8 border rounded-2xl bg-[#EFF0F1]">
           <h1 className="text-4xl font-medium mb-5 text-center">SIGNUP</h1>
           <form>
             <div>
@@ -76,7 +81,7 @@ const SignUp = () => {
               <label className="text-xl font-medium text-gray-700">Phone Number</label>
               <input
                   type="text"
-                  id="name"
+                  id="phone"
                   name="phone"
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Phone number"
@@ -96,18 +101,19 @@ const SignUp = () => {
               />
             </div>
             <article className="mt-4">
-              <label htmlFor="" className="text-xl font-medium text-gray-700">About yourself</label>
+              <label className="text-xl font-medium text-gray-700">About yourself</label>
               <textarea name=""
               placeholder="Basic Details"
               onChange={(e) => setBasicDetails(e.target.value)}
               className="mt-1 block w-full p-2 border max-h-26 border-gray-200 rounded-md"></textarea>
             </article>
-            <section>
-              <label className="text-xl font-medium text-gray-700">Password</label>
+            <section className="mt-4">
+              <label className="text-xl font-medium text-gray-700">Upload Profile</label>
               <input
                 type="file"
-                onChange={(e) => setImage(e.target.value)}
-                className="mt-1 block w-full p-2 h-12 border border-gray-200 rounded-md"
+                name="image"
+                onChange={(e) => setImage(e.target.files[0])}
+                className="mt-1 block w-full p-2 h-12 border border-gray-400 rounded-md"
                 />
             </section>
             <div className="mt-4">

@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 const BookAppointment = () => {
+  const [doctorName,setDoctorName] = useState([]);
+
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [contact, setContact] = useState('');
   const [doctor, setDoctor] = useState('');
   const [date, setDate] = useState('');
+  const [email, setEmail] = useState('');
   const [time, setTime] = useState('');
   const [comment, setComment] = useState('');
   const [gender, setGender] = useState('');
@@ -18,6 +21,7 @@ const BookAppointment = () => {
 
     if (!name) newErrors.name = 'Name is required';
     if (!gender) newErrors.gender = 'Gender is required';
+    if (!email) newErrors.gender = 'Email is required';
     if (!age) newErrors.age = 'Age is required';
     if (age && (isNaN(age) || age <= 0)) newErrors.age = 'Age must be a positive number';
     if (!contact) newErrors.contact = 'Contact is required';
@@ -31,7 +35,7 @@ const BookAppointment = () => {
 
   const handleSubmit = () => {
     if (validate()) {
-      axios.post('http://localhost:3555/bookingAppointment', { name, age, contact, doctor, date,completed: false,cancelled:false, time, comment, gender })
+      axios.post('http://localhost:3555/bookingAppointment', { name, age,email,contact, doctor, date,completed: false,cancelled:false, time, comment, gender })
         .then(result => {
           console.log(result);
           console.log(result.data);
@@ -40,6 +44,18 @@ const BookAppointment = () => {
         .catch(err => console.log(err));
     }
   };
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch("http://localhost:3555/register");
+        const data = await response.json();
+        setDoctorName(data)
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchDoctors()
+  }, []);
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -62,6 +78,17 @@ const BookAppointment = () => {
                 className={`mt-1 block w-full h-12 p-2 border rounded-md ${errors.name && "border-red-500"}`}
               />
               {errors.name && (<p className="text-red-500 text-xs mt-1">{errors.name}</p>)}
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm sm:text-base lg:text-lg font-medium text-gray-700" >Email</label>
+              <input
+                type="email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your full name"
+                className={`mt-1 block w-full h-12 p-2 border rounded-md ${errors.email && "border-red-500"}`}
+              />
+              {errors.email && (<p className="text-red-500 text-xs mt-1">{errors.email}</p>)}
             </div>
 
             <div className="mb-2">
@@ -129,12 +156,11 @@ const BookAppointment = () => {
                 >
                   Select a doctor
                 </option>
-                <option value="Dr. John Doe">Dr. John Doe</option>
-                <option value="Dr. Jane Doe">Dr. Jane Doe</option>
-                <option value="Dr. Alex Smith">Dr. Alex Smith</option>
-                <option value="Dr. Emily Clark">Dr. Emily Clark</option>
-                <option value="Dr. Michael Brown">Dr. Michael Brown</option>
-                <option value="Dr. Sarah Johnson">Dr. Sarah Johnson</option>
+                {
+                  doctorName.map((doctor,index) => (
+                    <option key={index} >{doctor.name}</option>
+                  ))
+                }
               </select>
               {errors.doctor && (<p className="text-red-500 text-xs mt-1">{errors.doctor}</p>)}
             </div>

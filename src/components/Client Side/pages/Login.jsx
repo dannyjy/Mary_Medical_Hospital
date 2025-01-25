@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
 
@@ -10,23 +11,30 @@ const Login = () => {
 
     const handleLogIn = async (e) =>{
         e.preventDefault();
-        const response = await fetch("http://localhost:3555/register");
-        const data = await response.json();
+        // const response = await fetch("http://localhost:3555/register");
+        // const data = await response.json();
+        //
+        // const message = document.getElementById('message');
+        // const user = data.find((user) => user.email === email && user.password === password);
+        //
+        // if (user) {
+        //   navigate("/home");
+        // } else {
+        //   if (!email && !password) {
+        //     message.innerHTML = "Please fill fields email and password";
+        //   }else if(!email || !password){
+        //     message.innerHTML = "Please fill all fields";
+        //   }else{
+        //     message.innerHTML = "User not found";
+        //   }
+        // }
 
-        const message = document.getElementById('message');
-        const user = data.find((user) => user.email === email && user.password === password);
-
-        if (user) {
-          navigate("/home");
-        } else {
-          if (!email && !password) {
-            message.innerHTML = "Please fill fields email and password";
-          }else if(!email || !password){
-            message.innerHTML = "Please fill all fields";
-          }else{
-            message.innerHTML = "User not found";
-          }
-        }
+        axios.post('http://localhost:3555/login', {email,password})
+            .then(result => {
+                sessionStorage.setItem("user",JSON.stringify(result.data));
+                navigate("/home")
+            })
+            .catch(err => console.log(err));
     }
 
   return (
@@ -36,12 +44,7 @@ const Login = () => {
           <h1 className="text-4xl font-medium mb-5 text-center">LOGIN</h1>
           <form onSubmit={handleLogIn}>
             <div className="mt-6">
-              <label
-                htmlFor="email"
-                className="text-xl font-medium text-gray-700"
-              >
-                Email
-              </label>
+              <label className="text-xl font-medium text-gray-700">Email</label>
               <input
                 type="email"
                 id="email"
@@ -52,14 +55,8 @@ const Login = () => {
                 className="mb-4 mt-1 block w-full p-2 border border-gray-200 h-12 rounded-md"
               />
             </div>
-
             <div className="">
-              <label
-                htmlFor="password"
-                className="text-xl font-medium text-gray-700"
-              >
-                Password
-              </label>
+              <label className="text-xl font-medium text-gray-700">Password</label>
               <input
                 type="password"
                 id="password"
@@ -71,13 +68,7 @@ const Login = () => {
               />
             </div>
             <p className="text-blue-400 mt-4">Forgot Password</p>
-            <button
-              type="submit"
-
-              className="bg-blue-400 text-white py-2 px-8 mt-4 rounded"
-            >
-              Login
-            </button>
+            <button type="submit" className="bg-blue-400 text-white py-2 px-8 mt-4 rounded">Login</button>
             <p id="message" className="text-red-600 text-center"></p>
           </form>
           <p className="mt-4">

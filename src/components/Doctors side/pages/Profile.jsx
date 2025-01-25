@@ -4,17 +4,31 @@ import { MdModeEdit } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaClock, FaPhoneAlt } from "react-icons/fa";
 import { IoIosInformationCircle } from "react-icons/io";
+import {useEffect, useState} from "react";
 
 const profile = () => {
+
+    const [user,setUser] = useState({});
+
+    useEffect(() => {
+        let userData = sessionStorage.getItem('user');
+        if(userData == null){
+            userData = {}
+        }else{
+            userData = JSON.parse(userData)
+        }
+            setUser(userData)
+    }, []);
+
     return(
         <div className="">
             <section className="flex items-center flex-wrap gap-5 pb-5 border-b-gray-500 border-b-2">
-                <div className="bg-[url('/Images/doctor1.jpg')] bg-center bg-cover h-[250px] w-[250px] rounded-[50%]"/>
+                <div className="bg-[url('/Images/userProfile.svg')] bg-center bg-cover h-[250px] w-[250px] rounded-[50%]"/>
                 <div className="">
-                    <h1 className="text-4xl">Dr. John Doe</h1>
-                    <h2 className="text-xl pb-3">Genetic Specialist</h2>
-                    <h1 className="text-2xl">Email: john.doe@example.com</h1>
-                    <h1 className="text-2xl">Phone: +44 1234567890</h1>
+                    <h1 className="text-4xl">Dr. {user&&user.name}</h1>
+                    <h2 className="text-xl pb-3">{user&&user.specialty}</h2>
+                    <h1 className="text-2xl">Email: {user&&user.email}</h1>
+                    <h1 className="text-2xl">Phone: {user&&user.phone}</h1>
                 </div>
             </section>
             <section className="pt-4">
