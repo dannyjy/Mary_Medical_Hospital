@@ -14,14 +14,20 @@ signUpRouter.post("/register",(req,res) =>{
     })
 
     SignUpModel.create({name,phone,specialty,basicDetails,email,image:"/uploads/"+imageName,password})
-        .then(registeration => {
-            res.json(registeration)
-            console.log(registeration)
-        })
-        .catch(err => {
-            console.log(err)
-            res.json(err)
-        })
+    .then(registeration => {
+        res.json(registeration)
+        console.log(registeration)
+    })
+    .catch(err => {
+        console.log(err)
+        res.json(err)
+    })
 })
+
+signUpRouter.get("/register",(req,res) => {
+    SignUpModel.find()
+    .then(results => res.json(results))
+    .catch(err => res.json(err))
+});
 
 module.exports = signUpRouter

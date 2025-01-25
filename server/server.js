@@ -7,7 +7,7 @@ const signUpRouter = require('./controllers/signUp.controller');
 const bookingRouter = require('./controllers/booking.controller');
 const rescheduleRouter = require("./controllers/reschedule.controller");
 const feedbackRouter = require("./controllers/feedback.controller");
-
+const SignUpModel = require('./models/SignUp')
 const app = express();
 app.use(express.json({limit: "50mb"}));
 app.get('/uploads/*', (req, res) => {
@@ -35,6 +35,8 @@ app.delete("/bookingAppointment/:email",bookingRouter);
 app.post('/rescheduleAppointment', rescheduleRouter);
 
 app.post("/register",signUpRouter);
+
+app.get("/register",signUpRouter);
 
 app.post('/login',loginRouter);
 
